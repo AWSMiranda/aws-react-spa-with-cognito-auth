@@ -10,7 +10,7 @@ import {
   AmplifySignIn,
 } from "@aws-amplify/ui-react";
 import { getTime } from "./api";
-console.log('Hi there!')
+console.log('Hi thered!')
 Amplify.configure({
   Auth: {
     region: process.env.AWS_REGION,
