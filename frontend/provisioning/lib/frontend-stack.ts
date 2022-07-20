@@ -8,8 +8,8 @@ import * as path from "path";
 import { Construct } from 'constructs';
 
 export class FrontendStack extends cdk.Stack {
-  constructor(scope: Construct, id: string) {
-    super(scope, id);
+  constructor(scope: Construct, id: string, props: cdk.StackProps) {
+    super(scope, id, props);
 
     const websiteBucket = new s3.Bucket(this, "WebsiteBucket", {
       websiteErrorDocument: "index.html",
