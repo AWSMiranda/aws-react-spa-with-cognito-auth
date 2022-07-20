@@ -1,16 +1,17 @@
-import * as cdk from "@aws-cdk/core";
-import * as cognito from "@aws-cdk/aws-cognito";
-import * as lambda from "@aws-cdk/aws-lambda";
-import * as lambdaNodejs from "@aws-cdk/aws-lambda-nodejs";
-import * as waf from "@aws-cdk/aws-wafv2";
-import * as agw from "@aws-cdk/aws-apigateway";
+import * as cdk from "aws-cdk-lib/core";
+import * as cognito from "aws-cdk-lib/aws-cognito";
+import * as lambda from "aws-cdk-lib/aws-lambda";
+import * as lambdaNodejs from "aws-cdk-lib/aws-lambda-nodejs";
+import * as waf from "aws-cdk-lib/aws-wafv2";
+import * as agw from "aws-cdk-lib/aws-apigateway";
+import { Construct } from 'constructs';
 
 interface APIStackProps extends cdk.StackProps {
   userPool: cognito.UserPool;
 }
 
 export class APIStack extends cdk.Stack {
-  constructor(scope: cdk.Construct, id: string, props: APIStackProps) {
+  constructor(scope: Construct, id: string, props: APIStackProps) {
     super(scope, id, props);
 
     const authorizer = new agw.CognitoUserPoolsAuthorizer(this, "Authorizer", {

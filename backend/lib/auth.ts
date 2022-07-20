@@ -1,12 +1,13 @@
-import * as cdk from "@aws-cdk/core";
-import * as cognito from "@aws-cdk/aws-cognito";
-import { CfnOutput } from "@aws-cdk/core";
+import * as cdk from "aws-cdk-lib/core";
+import * as cognito from "aws-cdk-lib/aws-cognito";
+import { CfnOutput } from "aws-cdk-lib/core";
+import { Construct } from 'constructs';
 
 export class AuthStack extends cdk.Stack {
   public readonly userPool: cognito.UserPool;
   public readonly client: cognito.UserPoolClient;
 
-  constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
     const userPool = new cognito.UserPool(this, "UserPool", {
@@ -31,6 +32,9 @@ export class AuthStack extends cdk.Stack {
 
     this.userPool = userPool;
     this.client = client;
+    process.env.AWS_REGION = 'us-west-2'
+    process.env.USER_POOL_ID = userPool.userPoolId
+    process.env.USER_POOL_CLIENT_ID = client.userPoolClientId
 
     new CfnOutput(this, "CognitoUserPoolId", {
       value: userPool.userPoolId,

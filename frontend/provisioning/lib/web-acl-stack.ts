@@ -1,9 +1,10 @@
-import * as cdk from "@aws-cdk/core";
-import * as ssm from "@aws-cdk/aws-ssm";
-import * as waf from "@aws-cdk/aws-wafv2";
+import * as cdk from "aws-cdk-lib/core";
+import * as ssm from "aws-cdk-lib/aws-ssm";
+import * as waf from "aws-cdk-lib/aws-wafv2";
+import { Construct } from 'constructs';
 
 export class WebAclStack extends cdk.Stack {
-  constructor(scope: cdk.Construct, id: string, props: cdk.StackProps) {
+  constructor(scope: Construct, id: string, props: cdk.StackProps) {
     super(scope, id, props);
     const ipRanges: string[] = scope.node.tryGetContext(
       "allowedIpAddressRanges"

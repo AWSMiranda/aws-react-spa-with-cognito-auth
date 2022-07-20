@@ -1,13 +1,14 @@
-import * as cdk from "@aws-cdk/core";
-import * as iam from "@aws-cdk/aws-iam";
-import * as cloudfront from "@aws-cdk/aws-cloudfront";
-import * as s3 from "@aws-cdk/aws-s3";
-import * as s3deploy from "@aws-cdk/aws-s3-deployment";
-import * as customResources from "@aws-cdk/custom-resources";
+import * as cdk from "aws-cdk-lib/core";
+import * as iam from "aws-cdk-lib/aws-iam";
+import * as cloudfront from "aws-cdk-lib/aws-cloudfront";
+import * as s3 from "aws-cdk-lib/aws-s3";
+import * as s3deploy from "aws-cdk-lib/aws-s3-deployment";
+import * as customResources from "aws-cdk-lib/custom-resources";
 import * as path from "path";
+import { Construct } from 'constructs';
 
 export class FrontendStack extends cdk.Stack {
-  constructor(scope: cdk.Construct, id: string) {
+  constructor(scope: Construct, id: string) {
     super(scope, id);
 
     const websiteBucket = new s3.Bucket(this, "WebsiteBucket", {
@@ -80,7 +81,7 @@ interface SsmParameterReaderProps {
   region: string;
 }
 
-class SsmParameterReader extends cdk.Construct {
+class SsmParameterReader extends Construct {
   private reader: customResources.AwsCustomResource;
 
   get stringValue(): string {
@@ -88,7 +89,7 @@ class SsmParameterReader extends cdk.Construct {
   }
 
   constructor(
-    scope: cdk.Construct,
+    scope: Construct,
     name: string,
     props: SsmParameterReaderProps
   ) {

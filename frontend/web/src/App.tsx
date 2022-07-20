@@ -13,13 +13,13 @@ import { getTime } from "./api";
 
 Amplify.configure({
   Auth: {
-    region: "ap-northeast-1",
-    userPoolId: "ap-northeast-1_xxx", // Please change this value.
-    userPoolWebClientId: "xxx", // Please change this value.
+    region: process.env.AWS_REGION,
+    userPoolId: process.env.USER_POOL_ID, // Please change this value.
+    userPoolWebClientId: process.env.USER_POOL_CLIENT_ID, // Please change this value.
   },
 });
 
-export const apiEndpoint = "https://xxx.ap-northeast-1.amazonaws.com"; // Please change this value. (Don't include '/api')
+export const apiEndpoint = process.env.API_ENDPOINT; // Please change this value. (Don't include '/api')
 
 const App: React.FC = () => {
   const [authState, setAuthState] = useState<AuthState>();
