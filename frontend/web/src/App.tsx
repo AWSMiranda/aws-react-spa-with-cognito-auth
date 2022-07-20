@@ -5,9 +5,7 @@ import "./App.css";
 import Amplify from "aws-amplify";
 import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
 import {
-  AmplifyAuthContainer,
-  AmplifyAuthenticator,
-  AmplifySignIn,
+  Authenticator,
 } from "@aws-amplify/ui-react";
 import { getTime } from "./api";
 process.env.AWS_REGION = 'us-west-2'
@@ -53,11 +51,14 @@ const App: React.FC = () => {
       </header>
     </div>
   ) : (
-    <AmplifyAuthContainer>
-      <AmplifyAuthenticator>
-        <AmplifySignIn slot="sign-in" hideSignUp={true} />
-      </AmplifyAuthenticator>
-    </AmplifyAuthContainer>
+    <Authenticator>
+      {({ signOut, user }) => (
+        <main>
+          <h1>Hello {user?.username}</h1>
+          <button onClick={signOut}>Sign out</button>
+        </main>
+      )}
+    </Authenticator>
   );
 };
 
