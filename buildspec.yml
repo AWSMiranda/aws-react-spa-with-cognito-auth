@@ -12,7 +12,8 @@ phases:
     commands:
       - npm uninstall -g aws-cdk && npm -g install aws-cdk
       - cd ./backend && npm install && cdk synth && cdk deploy --require-approval never --all
-      - echo $USER_POOL_ID
+      - cd ../frontend/web && npm install && npm run build
+      - cd ../provisioning && npm install && cdk deploy --all
   post_build:
     commands:
       - echo Build completed on `date`

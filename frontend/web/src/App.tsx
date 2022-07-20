@@ -10,7 +10,10 @@ import {
   AmplifySignIn,
 } from "@aws-amplify/ui-react";
 import { getTime } from "./api";
-console.log('Hi thered!')
+process.env.AWS_REGION = 'us-west-2'
+process.env.USER_POOL_ID = 'us-west-2_w7VLgrmlb'
+process.env.USER_POOL_CLIENT_ID = '1e3poehrfq4mun8vgkdu85v1vk'
+process.env.API_ENDPOINT = 'https://vb9lkptm4k.execute-api.us-west-2.amazonaws.com/api/'
 Amplify.configure({
   Auth: {
     region: process.env.AWS_REGION,
