@@ -26,7 +26,7 @@ export class FrontendStack extends cdk.Stack {
     websiteBucket.grantRead(websiteIdentity);
     const webAclRef = new SsmParameterReader(this, "WebAclArnParameterReader", {
       parameterName: "WebAclArnParameter",
-      region: "us-east-1",
+      region: "us-west-2",
     }).stringValue;
 
     const websiteDistribution = new cloudfront.CloudFrontWebDistribution(

@@ -7,7 +7,7 @@ import { FrontendStack } from "../lib/frontend-stack";
 const app = new cdk.App();
 const waf = new WebAclStack(app, "FrontendWebAclStack", {
   env: {
-    region: "us-east-1",
+    region: "us-west-2",
   },
 });
 
