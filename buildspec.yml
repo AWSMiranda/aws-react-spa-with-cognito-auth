@@ -10,7 +10,7 @@ phases:
       - cdk --version
   build:
     commands:
-      - npm install -g aws-cdk
+      - npm uninstall -g aws-cdk && npm -g install aws-cdk
       - cd ./backend && npm install && cdk synth && cdk deploy --require-approval never --all
       - echo $USER_POOL_ID
   post_build:
