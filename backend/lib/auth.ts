@@ -1,6 +1,6 @@
 import * as cdk from "aws-cdk-lib";
 import * as cognito from "aws-cdk-lib/aws-cognito";
-import { CfnOutput } from "aws-cdk-lib/core";
+import { CfnOutput } from "aws-cdk-lib";
 import { Construct } from 'constructs';
 
 export class AuthStack extends cdk.Stack {
