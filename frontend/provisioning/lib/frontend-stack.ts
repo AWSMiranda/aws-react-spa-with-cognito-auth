@@ -24,16 +24,11 @@ export class FrontendStack extends cdk.Stack {
       "WebsiteIdentity"
     );
     websiteBucket.grantRead(websiteIdentity);
-    const webAclRef = new SsmParameterReader(this, "WebAclArnParameterReader", {
-      parameterName: "WebAclArnParameter",
-      region: "us-west-2",
-    }).stringValue;
 
     const websiteDistribution = new cloudfront.CloudFrontWebDistribution(
       this,
       "WebsiteDistribution",
       {
-        webACLId: webAclRef,
         errorConfigurations: [
           {
             errorCachingMinTtl: 300,
