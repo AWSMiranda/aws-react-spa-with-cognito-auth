@@ -12,7 +12,7 @@ import { getTime } from "./api";
 const AWS_REGION = 'us-west-2'
 const USER_POOL_ID = 'us-west-2_w7VLgrmlb'
 const USER_POOL_CLIENT_ID = '1e3poehrfq4mun8vgkdu85v1vk'
-const API_ENDPOINT = 'https://vb9lkptm4k.execute-api.us-west-2.amazonaws.com/api/'
+const API_ENDPOINT = 'https://vb9lkptm4k.execute-api.us-west-2.amazonaws.com'
 Amplify.configure({
   aws_cognito_region: AWS_REGION,
   Auth: {
