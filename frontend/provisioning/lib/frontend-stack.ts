@@ -120,7 +120,7 @@ class SsmParameterReader extends Construct {
           ),
           // arn:aws:iam::891004053088:role/cdk-hnb659fds-cfn-exec-role-891004053088-us-west-2
           // arn:aws:iam::891004053088:role/FrontendStack-AWS679f53fac002430cb0da5b7982bd2287S-1S1P5V56IGUR2
-          // "arn:aws:iam::891004053088:root"
+          // arn:aws:iam::891004053088:root
           assumedRoleArn: 'arn:aws:iam::431852664250:role/crossaccountest',
         },
         role: lambdaRole
