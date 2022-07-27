@@ -70,10 +70,12 @@ export class FrontendStack extends cdk.Stack {
     })
     new cdk.CfnOutput(this, "endpoint", {
       description: "Frontend Endpoint",
-      value: websiteDistribution.distributionDomainName,
-      ssmTest: ssm.stringValue
+      value: websiteDistribution.distributionDomainName
     });
-
+    new cdk.CfnOutput(this, "ssmtest", {
+      description: "ssm val",
+      value: ssm.stringValue
+    });
   }
 }
 
