@@ -99,7 +99,7 @@ class SsmParameterReader extends Construct {
     super(scope, name);
 
     const { parameterName, region } = props;
-    const lambdaRole = iam.Role.fromRoleArn(scope, 'crossaccountlambdarole', 'arn:aws:iam::431852664250:role/crossaccountest')
+    const lambdaRole = iam.Role.fromRoleArn(scope, 'crossaccountlambdarole', 'arn:aws:iam::891004053088:role/crossaccountest')
 
     const customResource = new customResources.AwsCustomResource(
       scope,
@@ -118,12 +118,10 @@ class SsmParameterReader extends Construct {
           physicalResourceId: customResources.PhysicalResourceId.of(
             Date.now().toString()
           ),
-          // arn:aws:sts::891004053088:assumed-role/cdk-hnb659fds-deploy-role-891004053088-us-west-2/aws-cdk-root
-          // arn:aws:sts::891004053088:assumed-role/FrontendStack-AWS679f53fac002430cb0da5b7982bd2287S-26UB2L0JM4RC/FrontendStack-AWS679f53fac002430cb0da5b7982bd22872-Jkc0CW8fjUmN
           // arn:aws:iam::891004053088:role/cdk-hnb659fds-cfn-exec-role-891004053088-us-west-2
           // arn:aws:iam::891004053088:role/FrontendStack-AWS679f53fac002430cb0da5b7982bd2287S-1S1P5V56IGUR2
           // "arn:aws:iam::891004053088:root"
-          // assumedRoleArn: 'arn:aws:iam::431852664250:role/crossaccountest',
+          assumedRoleArn: 'arn:aws:iam::431852664250:role/crossaccountest',
         },
         role: lambdaRole
       }
