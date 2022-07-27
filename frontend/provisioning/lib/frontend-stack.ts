@@ -119,7 +119,7 @@ class SsmParameterReader extends Construct {
           ),
           // arn:aws:sts::891004053088:assumed-role/cdk-hnb659fds-deploy-role-891004053088-us-west-2/aws-cdk-root
           // arn:aws:sts::891004053088:assumed-role/FrontendStack-AWS679f53fac002430cb0da5b7982bd2287S-26UB2L0JM4RC/FrontendStack-AWS679f53fac002430cb0da5b7982bd22872-Jkc0CW8fjUmN
-          // assumedRoleArn: 'arn:aws:iam::431852664250:role/crossaccountest'
+          assumedRoleArn: 'arn:aws:iam::431852664250:role/crossaccountest'
         },
       }
     );
