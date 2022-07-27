@@ -99,7 +99,23 @@ class SsmParameterReader extends Construct {
     super(scope, name);
 
     const { parameterName, region } = props;
-    const lambdaRole = iam.Role.fromRoleArn(scope, 'crossaccountlambdarole', 'arn:aws:iam::891004053088:role/crossaccountest')
+    const crossAccountPolicy = new iam.PolicyDocument({
+      statements: [new iam.PolicyStatement({
+        actions: [
+          "sts:AssumeRole",
+        ],
+        effect: iam.Effect.ALLOW,
+        resources: ["arn:aws:iam::431852664250:role/crossaccountest"],
+      })]
+    })
+    const lambdaExcutionCrossAccountRole = new iam.Role(scope, 'lambdaExcutionCrossAccountRole', {
+      assumedBy: new iam.ServicePrincipal('lambda.amazonaws.com'),
+      description: 'This role allows lambda to execute and assume another role in another account',
+      inlinePolicies: {
+        crossAccountPolicy
+      }
+    })
+    lambdaExcutionCrossAccountRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName("AWSLambdaExecute"))
 
     const customResource = new customResources.AwsCustomResource(
       scope,
@@ -123,7 +139,7 @@ class SsmParameterReader extends Construct {
           // arn:aws:iam::891004053088:root
           assumedRoleArn: 'arn:aws:iam::431852664250:role/crossaccountest',
         },
-        role: lambdaRole
+        role: lambdaExcutionCrossAccountRole
       }
     );
 
