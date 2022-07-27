@@ -114,9 +114,9 @@ class SsmParameterReader extends Construct {
             Name: parameterName,
           },
           region,
-          physicalResourceId: customResources.PhysicalResourceId.of(
-            Date.now().toString()
-          ),
+          // physicalResourceId: customResources.PhysicalResourceId.of(
+          //   Date.now().toString()
+          // ),
           // assumedRoleArn: 'arn:aws:iam::<ANOTHER_ACCOUNT>:role/crossaccountest'
         },
       }
