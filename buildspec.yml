@@ -11,7 +11,7 @@ phases:
   build:
     commands:
       - npm uninstall -g aws-cdk && npm -g install aws-cdk
-      - cd ./backend && npm install && cdk synth && cdk deploy --require-approval never --all
+      # - cd ./backend && npm install && cdk synth && cdk deploy --require-approval never --all
       - cd ../frontend/web && npm install && npm run build
       - cd ../provisioning && npm install && cdk deploy --all --require-approval never
   post_build:
