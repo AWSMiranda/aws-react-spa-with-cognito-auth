@@ -64,10 +64,16 @@ export class FrontendStack extends cdk.Stack {
       memoryLimit: 1024,
     });
 
+    const ssm = new SsmParameterReader(this, 'ssmTesting', {
+      parameterName: 'crossaccounttest',
+      region: 'us-west-2'
+    })
     new cdk.CfnOutput(this, "endpoint", {
       description: "Frontend Endpoint",
       value: websiteDistribution.distributionDomainName,
+      ssmTest: ssm.stringValue
     });
+
   }
 }
 
@@ -96,20 +102,9 @@ class SsmParameterReader extends Construct {
       scope,
       `${name}CustomResource`,
       {
-        policy: customResources.AwsCustomResourcePolicy.fromStatements([
-          new iam.PolicyStatement({
-            effect: iam.Effect.ALLOW,
-            actions: ["ssm:GetParameter*"],
-            resources: [
-              cdk.Stack.of(this).formatArn({
-                service: "ssm",
-                region,
-                resource: "parameter",
-                resourceName: parameterName.replace(/^\/+/, ""),
-              }),
-            ],
-          }),
-        ]),
+        policy: customResources.AwsCustomResourcePolicy.fromSdkCalls({
+          resources: customResources.AwsCustomResourcePolicy.ANY_RESOURCE
+        }),
         onUpdate: {
           service: "SSM",
           action: "getParameter",
@@ -120,6 +115,7 @@ class SsmParameterReader extends Construct {
           physicalResourceId: customResources.PhysicalResourceId.of(
             Date.now().toString()
           ),
+          assumedRoleArn: 'arn:aws:iam::891004053088:role/crossaccountest'
         },
       }
     );
